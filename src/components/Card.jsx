@@ -1,6 +1,12 @@
 import React from "react";
-
+import { useRouter } from "next/router";
 const Card = ({ quiz, color }) => {
+  const router = useRouter();
+
+  const takeTest = (id) => {
+    localStorage.setItem("quiz", JSON.stringify(quiz));
+    router.push(`/${id}`);
+  };
   return (
     <div className="w-full rounded-xl shadow lg:my-4 my-2">
       <div
@@ -15,7 +21,10 @@ const Card = ({ quiz, color }) => {
           <p className="text-sm capitalize">{quiz.description}</p>
           <p className="capitalize text-sm">Created by: {quiz.author}</p>
         </div>
-        <button className="bg-gray-300 hover:bg-gray-200 h-8 w-24 my-auto px-2 rounded-md text-sm">
+        <button
+          onClick={() => takeTest(quiz.id)}
+          className="bg-gray-300 hover:bg-gray-200 h-8 w-24 my-auto px-2 rounded-md text-sm"
+        >
           Take Quiz
         </button>
         {/* <div className="my-auto">

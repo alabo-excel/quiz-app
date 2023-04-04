@@ -12,9 +12,10 @@ export default function Home() {
     const querySnapshot = await getDocs(collection(db, "quizes"));
     const arr = [];
     querySnapshot.forEach((doc) => {
-      arr.push(doc.data());
+      arr.push({ ...doc.data(), id: doc.id });
     });
     setQuizes(arr);
+    console.log(arr);
   };
   useEffect(() => {
     getData();
