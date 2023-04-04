@@ -10,10 +10,11 @@ export default function Home() {
   const [quizes, setQuizes] = useState([]);
   const getData = async () => {
     const querySnapshot = await getDocs(collection(db, "quizes"));
+    const arr = [];
     querySnapshot.forEach((doc) => {
-      // console.log(`${doc.id} => ${doc.data()}`);
-      setQuizes((prev) => [...prev, doc.data()]);
+      arr.push(doc.data());
     });
+    setQuizes(arr);
   };
   useEffect(() => {
     getData();
