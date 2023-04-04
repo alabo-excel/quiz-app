@@ -20,7 +20,7 @@ const HeaderNav = () => {
   }, []);
   return (
     <>
-      <div className="flex w-full px-32 p-2 shadow justify-between">
+      <div className="flex w-full lg:px-20 px-4 p-2 shadow justify-between">
         <Link href="/" className="my-auto">
           <h1 className="font-bold text-xl">Quiz App</h1>
         </Link>
@@ -42,7 +42,7 @@ const HeaderNav = () => {
       {show ? null : (
         <div className="">
           <div className="fixed bg-black top-0 left-0 opacity-50 w-screen h-screen z-1"></div>
-          <div className="fixed top-[25%] w-1/2 lg:py-20 lg:px-32 text-center left-[25%]  right-[25%] bg-white h-1/2">
+          <div className="fixed top-[25%] lg:w-1/2 lg:py-20 py-10 rounded-xl px-4 lg:px-32 text-center lg:left-[25%] left-[5%] right-[5%] lg:right-[25%] bg-white h-1/2">
             <h1 className="text-xl capitalize">
               Hello and Welcome to My Quiz App Please enter a name to continue
             </h1>

@@ -1,8 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import HeaderNav from "@/components/HeaderNav";
+import AddQuestion from "@/components/AddQuestion";
+import { collection, addDoc } from "firebase/firestore";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/router";
+import { db } from "../firebase";
 
 const add = () => {
+  const router = useRouter();
+  const [steps, setSteps] = useState(0);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [gradingPoints, setGradingPoints] = useState("");
+  const [quizTime, setQuizTime] = useState("");
+  const [questions, setQuestions] = useState([]);
+  const [preview, setPreview] = useState(false);
+
+  const nextScreen = () => {
+    if (
+      name === "" ||
+      description === "" ||
+      gradingPoints === "" ||
+      quizTime === ""
+    ) {
+      return;
+    }
+    setSteps(1);
+  };
+  const removeQuestion = (index) => {
+    const newQuestions = [...questions];
+    newQuestions.splice(index, 1);
+    setQuestions(newQuestions);
+  };
+
+  const submit = async () => {
+    if (preview === false) {
+      setPreview(true);
+      return;
+    }
+    try {
+      const docRef = await addDoc(collection(db, "quizes"), {
+        name: name,
+        description: description,
+        grading: gradingPoints,
+        timeLimit: quizTime,
+        author: getCookie("name"),
+        questions: questions,
+      });
+      console.log("Document written with ID: ", docRef.id);
+      router.push("/");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const newQuestion = (val) => {
+    console.log(val);
+    setQuestions([...questions, val]);
+  };
   return (
     <>
       <Head>
@@ -12,28 +67,112 @@ const add = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeaderNav />
-      <main className="w-1/2 mx-auto py-10">
+      <main className="lg:w-1/2 mx-auto p-4 py-10">
         <h3 className="text-xl text-center">Create a New Quiz</h3>
-        <input
-          type="text"
-          className="p-2 border border-gray-400 rounded-sm w-full my-2"
-          placeholder="Enter Quiz Title"
-        />
-        <textarea
-          className="p-2 border border-gray-400 rounded-sm w-full my-2"
-          cols="30"
-          placeholder="Enter Quiz Description"
-        ></textarea>
-        <input
-          type="number"
-          className="p-2 border border-gray-400 rounded-sm w-full my-2"
-          placeholder="Enter Grading Points"
-        />
-        <input
-          type="number"
-          className="p-2 border border-gray-400 rounded-sm w-full my-2"
-          placeholder="Enter Quiz Time in Minutes"
-        />
+        {steps === 0 && (
+          <div>
+            <input
+              type="text"
+              className="p-2 border border-gray-400 rounded-sm w-full my-2"
+              placeholder="Enter Quiz Title"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+            <textarea
+              className="p-2 border border-gray-400 rounded-sm w-full my-2"
+              cols="30"
+              placeholder="Enter Quiz Description"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+            ></textarea>
+            <input
+              type="number"
+              className="p-2 border border-gray-400 rounded-sm w-full my-2"
+              placeholder="Enter Grading Points"
+              onChange={(e) => setGradingPoints(e.target.value)}
+              value={gradingPoints}
+            />
+            <input
+              type="number"
+              className="p-2 border border-gray-400 rounded-sm w-full my-2"
+              placeholder="Enter Quiz Time in Minutes"
+              onChange={(e) => setQuizTime(e.target.value)}
+              value={quizTime}
+            />
+            <button
+              onClick={() => nextScreen()}
+              className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md lg:w-44 float-right mt-6"
+            >
+              Next
+            </button>
+          </div>
+        )}
+        {steps === 1 && <AddQuestion sendData={newQuestion} />}
+        {steps > 0 && (
+          <div className="flex justify-between">
+            <button
+              onClick={() => submit()}
+              className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md lg:w-44 mt-6"
+            >
+              Preview
+            </button>
+          </div>
+        )}
+        {preview ? (
+          <div className="">
+            <div className="fixed bg-black top-0 left-0 opacity-50 w-screen h-screen z-1"></div>
+            <div className="fixed top-[15%] overflow-y-auto h-full	 text-sm lg:w-1/2 lg:py-20 py-10 rounded-xl px-4 lg:px-32 lg:left-[25%] left-[5%] right-[5%] lg:right-[25%] bg-white ">
+              <h3 className="text-xl font-bold">Quiz name: {name}</h3>
+              <p>Description: {description}</p>
+              <p>Grading Points: {gradingPoints}</p>
+              <p>Time Limit: {quizTime} minutes</p>
+              <h3 className="text-xl font-bold">Questions</h3>
+              {questions.map((question, index) => (
+                <div key={index} className="my-2">
+                  <div
+                    onClick={() => removeQuestion(index)}
+                    className="float-right mt-1"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="15"
+                      height="15"
+                      fill="currentColor"
+                      className="bi bi-x-lg"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                    </svg>
+                  </div>
+                  <p className="text-base font-bold">{question.title}</p>
+                  {question.answers.map((option, index) => (
+                    <div key={index} className="flex justify-between">
+                      <p>{option.title}</p>
+                      <p>{option.correct ? "Correct" : "Incorrect"}</p>
+                    </div>
+                  ))}
+                </div>
+              ))}
+              <div className="flex justify-between mt-6">
+                <button
+                  onClick={() => submit()}
+                  className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md"
+                >
+                  Submit
+                </button>
+                <button
+                  onClick={() => {
+                    setPreview(false);
+                    setSteps(0);
+                  }}
+                  className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </main>
     </>
   );
