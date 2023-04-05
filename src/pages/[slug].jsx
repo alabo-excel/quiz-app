@@ -41,7 +41,7 @@ const singleQuiz = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeaderNav />
-      <main className="lg:px-20 p-4 py-10">
+      <main className="lg:px-20 p-4">
         {test === true ? (
           <div className="mx-auto lg:w-1/2 my-20">
             <div className="text-center capitalize text-2xl my-1 font-bold">
@@ -61,7 +61,7 @@ const singleQuiz = () => {
                   }}
                   className={
                     selected === index
-                      ? `bg-gray-400 capitalize text-left p-3 w-full rounded-md my-3`
+                      ? `bg-gray-600 text-white capitalize text-left p-3 w-full rounded-md my-3`
                       : "bg-gray-100 capitalize text-left p-3 w-full rounded-md my-3"
                   }
                 >
@@ -123,9 +123,10 @@ const singleQuiz = () => {
         {timeUp ? (
           <div className="">
             <div className="fixed bg-black top-0 left-0 opacity-50 w-screen h-screen z-1"></div>
-            <div className="fixed top-[25%] lg:w-1/2 lg:py-32 py-10 rounded-xl px-4 lg:px-32 text-center lg:left-[25%] left-[5%] right-[5%] lg:right-[25%] bg-white h-1/2">
+            <div className="fixed top-[25%] lg:w-1/2 lg:py-32 py-20 rounded-xl px-4 lg:px-32 text-center lg:left-[25%] left-[5%] right-[5%] lg:right-[25%] bg-white">
               <h1 className="text-3xl capitalize">
-                🎉 Congratulations your score is {score} 🎉
+                🎉 Congratulations you have completed the test, your score is{" "}
+                {score} 🎉
               </h1>
               <div className="flex justify-between my-4">
                 <button
