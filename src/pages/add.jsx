@@ -121,7 +121,24 @@ const add = () => {
         {preview ? (
           <div className="">
             <div className="fixed bg-black top-0 left-0 opacity-50 w-screen h-screen z-1"></div>
-            <div className="fixed top-[15%] overflow-y-auto h-full	 text-sm lg:w-1/2 lg:py-20 py-10 rounded-xl px-4 lg:px-32 lg:left-[25%] left-[5%] right-[5%] lg:right-[25%] bg-white ">
+            <div className="absolute top-[5%] overflow-y-auto lg:h-full h-auto text-sm lg:w-1/2 lg:py-20 py-10 rounded-xl px-4 lg:px-32 lg:left-[25%] left-[5%] right-[5%] lg:right-[25%] bg-white ">
+              <div className="flex justify-between mb-4">
+                <button
+                  onClick={() => submit()}
+                  className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md"
+                >
+                  Submit
+                </button>
+                <button
+                  onClick={() => {
+                    setPreview(false);
+                    setSteps(0);
+                  }}
+                  className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md"
+                >
+                  Edit
+                </button>
+              </div>
               <h3 className="text-xl font-bold">Quiz name: {name}</h3>
               <p>Description: {description}</p>
               <p>Grading Points: {gradingPoints}</p>
@@ -153,23 +170,6 @@ const add = () => {
                   ))}
                 </div>
               ))}
-              <div className="flex justify-between mt-6">
-                <button
-                  onClick={() => submit()}
-                  className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md"
-                >
-                  Submit
-                </button>
-                <button
-                  onClick={() => {
-                    setPreview(false);
-                    setSteps(0);
-                  }}
-                  className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md"
-                >
-                  Edit
-                </button>
-              </div>
             </div>
           </div>
         ) : null}

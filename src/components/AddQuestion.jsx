@@ -9,6 +9,16 @@ const AddQuestion = ({ sendData }) => {
   const [optionD, setOptionD] = useState("");
 
   const done = () => {
+    if (
+      optionA === "" ||
+      optionB === "" ||
+      optionC === "" ||
+      optionD === "" ||
+      question === "" ||
+      correctOption === ""
+    ) {
+      return;
+    }
     sendData({
       title: question,
       answers: [

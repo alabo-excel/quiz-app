@@ -126,7 +126,7 @@ const singleQuiz = () => {
             <div className="fixed top-[25%] lg:w-1/2 lg:py-32 py-20 rounded-xl px-4 lg:px-32 text-center lg:left-[25%] left-[5%] right-[5%] lg:right-[25%] bg-white">
               <h1 className="text-3xl capitalize">
                 🎉 Congratulations you have completed the test, your score is{" "}
-                {score} 🎉
+                {score}. 🎉
               </h1>
               <div className="flex justify-between my-4">
                 <button
