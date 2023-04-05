@@ -10,13 +10,14 @@ const AddQuestion = ({ sendData }) => {
 
   const done = () => {
     if (
-      optionA === "" ||
-      optionB === "" ||
-      optionC === "" ||
-      optionD === "" ||
-      question === "" ||
+      optionA.length <= 4 ||
+      optionB.length <= 4 ||
+      optionC.length <= 4 ||
+      optionD.length <= 4 ||
+      question.length <= 4 ||
       correctOption === ""
     ) {
+      alert("Please fill all the fields correctly with at least 4 characters");
       return;
     }
     sendData({
@@ -99,7 +100,7 @@ const AddQuestion = ({ sendData }) => {
       </select>
       <button
         onClick={() => done()}
-        className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md float-right lg:mt-16 mt-6"
+        className="bg-[#023047] text-white hover:bg-[#023e8a] p-3 rounded-md float-right lg:mt-16 mt-6"
       >
         Add Question
       </button>

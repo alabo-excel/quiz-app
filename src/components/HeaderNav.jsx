@@ -20,12 +20,12 @@ const HeaderNav = () => {
   }, []);
   return (
     <>
-      <div className="flex w-full lg:px-20 px-4 p-2 shadow justify-between">
+      <div className="flex w-full lg:px-20 px-4 p-2 shadow justify-between bg-[#023047] text-white">
         <Link href="/" className="my-auto">
           <h1 className="font-bold text-xl">Quiz App</h1>
         </Link>
         <Link href="/add">
-          <div className="p-2 bg-gray-300 hover:bg-gray-200 rounded-full">
+          <div className="p-2 bg-[#023e8a] hover:bg-transparent rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -54,7 +54,7 @@ const HeaderNav = () => {
             />
             <button
               onClick={handleShow}
-              className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md"
+              className="bg-[#023047] text-white hover:bg-[#023e8a] p-3 rounded-md"
             >
               Continue
             </button>

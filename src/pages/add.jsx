@@ -68,7 +68,7 @@ const add = () => {
       </Head>
       <HeaderNav />
       <main className="lg:w-1/2 mx-auto p-4 py-10">
-        <h3 className="text-xl text-center">Create a New Quiz</h3>
+        <h3 className="text-2xl font-bold text-center">Create a New Quiz</h3>
         {steps === 0 && (
           <div>
             <input
@@ -101,7 +101,7 @@ const add = () => {
             />
             <button
               onClick={() => nextScreen()}
-              className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md lg:w-44 float-right mt-6"
+              className="bg-[#023047] text-white hover:bg-[#023e8a] p-3 rounded-md lg:w-44 float-right mt-6"
             >
               Next
             </button>
@@ -112,7 +112,7 @@ const add = () => {
           <div className="flex justify-between">
             <button
               onClick={() => submit()}
-              className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md lg:w-44 mt-6"
+              className="bg-[#023047] text-white hover:bg-[#023e8a] p-3 rounded-md lg:w-44 mt-6"
             >
               Preview
             </button>
@@ -121,11 +121,11 @@ const add = () => {
         {preview ? (
           <div className="">
             <div className="fixed bg-black top-0 left-0 opacity-50 w-screen h-screen z-1"></div>
-            <div className="absolute top-[5%] overflow-y-auto lg:h-full h-auto text-sm lg:w-1/2 lg:py-20 py-10 rounded-xl px-4 lg:px-32 lg:left-[25%] left-[5%] right-[5%] lg:right-[25%] bg-white ">
+            <div className="absolute top-[5%] overflow-y-auto lg:h-[80%] text-sm lg:w-1/2 lg:py-20 py-10 px-4 lg:px-32 lg:left-[25%] left-[5%] lg:bottom[15%] bottom-[5%] right-[5%] lg:right-[25%] bg-white ">
               <div className="flex justify-between mb-4">
                 <button
                   onClick={() => submit()}
-                  className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md"
+                  className="bg-[#023047] text-white hover:bg-[#023e8a] p-3 rounded-md"
                 >
                   Submit
                 </button>
@@ -134,7 +134,7 @@ const add = () => {
                     setPreview(false);
                     setSteps(0);
                   }}
-                  className="bg-gray-300 hover:bg-gray-200 p-3 rounded-md"
+                  className="bg-[#023047] text-white hover:bg-[#023e8a] p-3 rounded-md"
                 >
                   Edit
                 </button>

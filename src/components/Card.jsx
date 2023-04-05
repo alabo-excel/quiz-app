@@ -8,7 +8,13 @@ const Card = ({ quiz, color }) => {
     router.push(`/${id}`);
   };
   return (
-    <div className="w-full rounded-xl shadow lg:my-4 my-2">
+    <div
+      className="w-full rounded-xl lg:my-4 my-2"
+      style={{
+        borderBottom: "4px solid" + color,
+        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 0px 8px'
+      }}
+    >
       <div
         className="w-full rounded-t-xl p-12 text-center"
         style={{ backgroundColor: color }}
@@ -23,7 +29,7 @@ const Card = ({ quiz, color }) => {
         </div>
         <button
           onClick={() => takeTest(quiz.id)}
-          className="bg-gray-300 hover:bg-gray-200 h-8 w-24 my-auto px-2 rounded-md text-sm"
+          className=" text-white bg-[#023e8a] h-8 w-24 my-auto px-2 rounded-md text-sm"
         >
           Take Quiz
         </button>

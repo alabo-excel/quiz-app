@@ -61,7 +61,7 @@ const singleQuiz = () => {
                   }}
                   className={
                     selected === index
-                      ? `bg-gray-600 text-white capitalize text-left p-3 w-full rounded-md my-3`
+                      ? `bg-[#023e8a] text-white capitalize text-left p-3 w-full rounded-md my-3`
                       : "bg-gray-100 capitalize text-left p-3 w-full rounded-md my-3"
                   }
                 >
@@ -81,7 +81,7 @@ const singleQuiz = () => {
               {length === quiz.questions.length - 1 && (
                 <button
                   onClick={() => submit()}
-                  className="bg-gray-600 p-3 w-44 text-white rounded-md my-3"
+                  className="bg-[#023047] text-white hover:bg-[#023e8a] p-3 my-3 w-44 rounded-md"
                 >
                   Submit
                 </button>
@@ -92,7 +92,7 @@ const singleQuiz = () => {
                     setLength(length + 1);
                     setSelected(null);
                   }}
-                  className="bg-gray-600 p-3 w-44 text-white rounded-md my-3"
+                  className="bg-[#023047] text-white hover:bg-[#023e8a] p-3 my-3 w-44 rounded-md"
                 >
                   Next
                 </button>
@@ -114,7 +114,7 @@ const singleQuiz = () => {
               onClick={() => {
                 setTest(true), timing();
               }}
-              className="bg-gray-300 p-3 w-44 rounded-md my-3"
+              className="bg-[#023047] text-white p-3 w-44 rounded-md my-3"
             >
               Start
             </button>
@@ -131,12 +131,12 @@ const singleQuiz = () => {
               <div className="flex justify-between my-4">
                 <button
                   onClick={() => router.reload()}
-                  className="bg-gray-300 hover:bg-gray-200 lg:w-44 p-3 rounded-md"
+                  className="bg-[#023047] text-white hover:bg-[#023e8a] lg:w-44 p-3 rounded-md"
                 >
                   Retake
                 </button>
                 <Link href="/">
-                  <button className="bg-gray-300 lg:w-44 hover:bg-gray-200 p-3 rounded-md">
+                  <button className="bg-[#023047] text-white lg:w-44 hover:bg-[#023e8a] p-3 rounded-md">
                     Go Home
                   </button>
                 </Link>
