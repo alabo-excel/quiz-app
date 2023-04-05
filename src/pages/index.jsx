@@ -15,9 +15,10 @@ export default function Home() {
       arr.push({ ...doc.data(), id: doc.id });
     });
     setQuizes(arr);
-    console.log(arr);
+    // console.log(arr);
   };
   useEffect(() => {
+    localStorage.clear();
     getData();
   }, []);
 

@@ -95,7 +95,7 @@ const add = () => {
             <input
               type="number"
               className="p-2 border border-gray-400 rounded-sm w-full my-2"
-              placeholder="Enter Quiz Time in Minutes"
+              placeholder="Enter Quiz Time in Seconds"
               onChange={(e) => setQuizTime(e.target.value)}
               value={quizTime}
             />
@@ -125,7 +125,7 @@ const add = () => {
               <h3 className="text-xl font-bold">Quiz name: {name}</h3>
               <p>Description: {description}</p>
               <p>Grading Points: {gradingPoints}</p>
-              <p>Time Limit: {quizTime} minutes</p>
+              <p>Time Limit: {quizTime} seconds</p>
               <h3 className="text-xl font-bold">Questions</h3>
               {questions.map((question, index) => (
                 <div key={index} className="my-2">
